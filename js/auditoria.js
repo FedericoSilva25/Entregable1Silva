@@ -53,17 +53,51 @@ function cargarHistorial() {
 }
 
 function eliminarAuditoria(index) {
-  const historial = JSON.parse(localStorage.getItem("auditorias") || "[]");
-  historial.splice(index, 1);
-  localStorage.setItem("auditorias", JSON.stringify(historial));
-  cargarHistorial();
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "¡No podrás revertir esto!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminarlo!',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const historial = JSON.parse(localStorage.getItem("auditorias") || "[]");
+      historial.splice(index, 1);
+      localStorage.setItem("auditorias", JSON.stringify(historial));
+      cargarHistorial();
+      Swal.fire(
+        'Eliminado!',
+        'La auditoría ha sido eliminada.',
+        'success'
+      );
+    }
+  });
 }
 
 btnBorrarTodo.addEventListener("click", () => {
-  if (confirm("¿Estás seguro de eliminar todo el historial?")) {
-    localStorage.removeItem("auditorias");
-    cargarHistorial();
-  }
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "¡Esto eliminará todo el historial de auditorías y no podrás revertirlo!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminar todo!',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.removeItem("auditorias");
+      cargarHistorial();
+      Swal.fire(
+        'Historial Eliminado!',
+        'Todo el historial de auditorías ha sido borrado.',
+        'success'
+      );
+    }
+  });
 });
 
 cargarHistorial();
