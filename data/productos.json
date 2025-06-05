@@ -1,0 +1,6 @@
+[
+  { "id": 1, "nombre": "Coca-Cola 500ml", "stock": 15, "stockIdeal": 30 },
+  { "id": 2, "nombre": "Agua Mineral 500ml", "stock": 10, "stockIdeal": 25 },
+  { "id": 3, "nombre": "Cerveza Andes", "stock": 8, "stockIdeal": 20 },
+  { "id": 4, "nombre": "Speed", "stock": 12, "stockIdeal": 18 }
+]
